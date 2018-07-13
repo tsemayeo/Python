@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Made with Thimble</title>
+    <style>
+      #heading {
+        border-width:1px;
+      }
+      #title {
+        float: left;
+        background: rgba(253, 237, 63, 1.0);
+      }
+
+      p {
+        font-family: san-serif;
+      }
+      img {
+        width:100%;
+
+      }
+      body {
+        background: rgba(181, 25, 13, 0.9);
+      }
+      p {
+        color:white;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      #next-arrow {
+        width:40px;
+        position:absolute;
+        top:160px;
+        left:570px;
+      }
+      #back-arrow {
+        width:40px;
+        position:absolute;
+        top:160px;
+        left:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="heading">
+      <h1><a href="https://media.newyorker.com/photos/59097a1a1c7a8e33fb38ff2c/16:9/w_1200,h_630,c_limit/Wright-Syria3.jpg" id="title"><span>Syria Refugee Crisis</span></a></h1>
+    <p>This is one of the most atrocious acts to be committed in the history of humanity.</p>
+    </div>
+    <div id="picture">
+    <img src="" id="bansky-war" alt="war images">
+    <img src="https://cdn.onlinewebfonts.com/svg/img_71299.png" id="next-arrow">
+    <img src="https://cdn.onlinewebfonts.com/svg/img_25909.png" id="back-arrow">
+    </div>
+  </body>
+  <script>
+   var images = document.getElementById("bansky-war");
+    var sources =     ["https://static.dezeen.com/uploads/2017/09/banksy-installs-basquiat-graffiti-barbican-news-_dezeen_2364_col_0.jpg", "https://purewow-prodstatics3azcdn.azureedge.net/images/articles/2015_02/Banksy4.jpg","https://i2-prod.coventrytelegraph.net/incoming/article13224949.ece/ALTERNATES/s615b/Banksy.jpg", "https://ae01.alicdn.com/kf/HTB1w9JzJFXXXXXqXVXXq6xXFXXXn/Soldiers-Painting-Peace-Banksy-Graffiti-Art-Giclee-Fine-Art-Canvas-by-Hand-painted-no-Frame.jpg", "https://media.newyorker.com/photos/59097a1a1c7a8e33fb38ff2c/16:9/w_1200,h_630,c_limit/Wright-Syria3.jpg"]
+  var i = 0
+  var nextArrow = document.getElementById("next-arrow");
+  var backArrow = document.getElementById("back-arrow");
+  var slideShowForward = function() {
+     if (i < sources.length ) {
+        images.src = sources[i]
+        i++;
+      }
+      else if (i === sources.length) {
+        i = 0;
+        return slideShowForward();
+      }
+    };
+
+  var slideShowBackward = function() {
+      if (i>= 0 ) {
+        images.src = sources[i];
+        i -= 1;
+      }
+      else if (i < 0) {
+        i = sources.length-1;
+        return slideShowBackward();
+      }
+    };
+
+
+    //Find a way to unify the next and back arrows so that the value of i is the same for both
+    nextArrow.addEventListener("click", slideShowForward);
+    //backArrow.addEventListener("click", slideShowBackward);
+    //window.setInterval(slideShowForward, 2000);
+  </script>
+</html>
